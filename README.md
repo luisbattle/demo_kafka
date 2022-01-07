@@ -3,8 +3,9 @@
 # How to run?
     docker-compose up -d
 
-# How to test Fil-over
-    docker-compose stop kafka1
+# How to test Fail-over
+    docker-compose stop kafkaX
+    change ´X´ for the number of broker(kafka1,kafka2 or kafka3)
 
 
 
@@ -19,7 +20,7 @@
 ## Describe all consumers groups
     /opt/bitnami/kafka/bin/kafka-consumer-groups.sh  --bootstrap-server localhost:9092 --describe --all-groups
 
-## listar topicos
+## How to list topics
     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 # Kafka Architecture(example)
