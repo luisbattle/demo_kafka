@@ -1,29 +1,29 @@
 # KAFKA CLUSTER
 
+# How to run?
+    docker-compose up -d
 
-https://github.com/bitnami/bitnami-docker-kafka/blob/master/README.md
+# How to test Fil-over
+    docker-compose stop kafka1
+
+
+
 
 
 ## create a replicated topic
-/opt/bitnami/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic sales --partitions 3 --replication-factor 3
+    /opt/bitnami/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic sales --partitions 3 --replication-factor 3
 
 ## Describe topic
-/opt/bitnami/kafka/bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic mytopic
+    /opt/bitnami/kafka/bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic sales
 
 ## Describe all consumers groups
-./kafka-consumer-groups.sh  --bootstrap-server localhost:9092 --describe --all-groups
+    /opt/bitnami/kafka/bin/kafka-consumer-groups.sh  --bootstrap-server localhost:9092 --describe --all-groups
 
 ## listar topicos
-./kafka-topics.sh --bootstrap-server localhost:9092 --list
-audit
-audit_loyalty
-audit_smartkargo
-fraudCaseCheck
-sales
+    /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
-
-# Kafka Architecture
-http://cloudurable.com/blog/kafka-architecture-topics/index.html
+# Kafka Architecture(example)
+    http://cloudurable.com/blog/kafka-architecture-topics/index.html
 
 ## Kafka architecture has 4 actors. These are:
 * Broker
@@ -43,3 +43,5 @@ The data in the partition is not stored here forever. Kafka has two storage conf
 These are:
 * Time-based retention (e.g. 7 days)
 * Data size based storage (e.g. 100 GB)
+
+For more information about kafka please see [here](https://github.com/bitnami/bitnami-docker-kafka/blob/master/README.md)

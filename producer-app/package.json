@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "kafkajs": "^1.15.0"
+  },
+  "name": "demo_kafka",
+  "description": "producer kafka app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

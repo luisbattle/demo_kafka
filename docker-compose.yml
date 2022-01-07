@@ -43,9 +43,8 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=1
       - KAFKA_CFG_NUM_PARTITIONS=3
-      #- KAFKA_NUM_PARTITIONS=3
       - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
-      #- KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -63,9 +62,8 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=2
       - KAFKA_CFG_NUM_PARTITIONS=3
-      #- KAFKA_NUM_PARTITIONS=3
       - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
-      #- KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo2:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -82,9 +80,8 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=3
       - KAFKA_CFG_NUM_PARTITIONS=3
-      #- KAFKA_NUM_PARTITIONS=3
       - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
-      #- KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo3:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -93,19 +90,21 @@ services:
       - zoo3
     networks:
       - my-network
-  my-app:
-    build: ./my-app
-    image: my-app
+  producer-app:
+    build: ./producer-app
+    image: producer-app
     restart: always
-    hostname: my-app
-    # ports:
-    #   - 2181:2181
-    # environment:
-    #   ZOO_MY_ID: 1
-    #   ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
-    #   ALLOW_ANONYMOUS_LOGIN: 'yes'
+    hostname: producer-app
     networks:
       - my-network
+  consumer-app:
+    build: ./consumer-app
+    image: consumer-app
+    restart: always
+    hostname: consumer-app
+    networks:
+      - my-network
+
 networks:
   my-network:
     driver: bridge
